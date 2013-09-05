@@ -13,6 +13,10 @@
 
   (TEMP FIX) = needs to be reworked but works for now
 
+  ----------------------------05/09/2013-----------------------------
+  - added feature where quotes and brackets if empty both chars get
+    deleted
+
   ----------------------------03/09/2013-----------------------------
   - TODO: fix tab depth bug (COMPLETED)
   - TODO: fix small bug when odd number of whitespaces on line and
@@ -156,10 +160,16 @@ $(document).ready(function () {
 
         if (event.keyCode == 8 && !htmleditor.somethingSelected())//backspace
         {
-          //console.log(!hasWhiteSpace(htmleditor.getLine(htmleditor.getCursor().line)));
           
           arr[arrIndex] = "htmleditor: @@backspace∆" + lengthToCursor;
           arrIndex++;
+          htmleditor.getRange({line: htmleditor.posFromIndex(lengthToCursor-1).line, ch:  htmleditor.posFromIndex(lengthToCursor-1).ch},{line:  htmleditor.posFromIndex(lengthToCursor).line, ch:  htmleditor.posFromIndex(lengthToCursor).ch});
+          if("\"\'}])".indexOf(htmleditor.getRange({line: htmleditor.posFromIndex(lengthToCursor).line, ch:  htmleditor.posFromIndex(lengthToCursor).ch},{line:  htmleditor.posFromIndex(lengthToCursor+1).line, ch:  htmleditor.posFromIndex(lengthToCursor+1).ch})) != -1 && "\"\'{[(".indexOf(htmleditor.getRange({line: htmleditor.posFromIndex(lengthToCursor-1).line, ch:  htmleditor.posFromIndex(lengthToCursor-1).ch},{line:  htmleditor.posFromIndex(lengthToCursor).line, ch:  htmleditor.posFromIndex(lengthToCursor).ch})) != -1)
+          {
+            arr[arrIndex] = "htmleditor: @@backspace∆" + (lengthToCursor);
+            arrIndex++;
+            htmleditor.replaceRange("", {line: htmleditor.posFromIndex(lengthToCursor).line, ch:  htmleditor.posFromIndex(lengthToCursor).ch},{line:  htmleditor.posFromIndex(lengthToCursor+1).line, ch:  htmleditor.posFromIndex(lengthToCursor+1).ch})
+          }
         }
         else if (event.keyCode == 13)//enter key
         {
