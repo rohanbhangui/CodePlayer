@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Code Player</title>
+  
+  <!-- jquery libraries -->
+  <script type="text/javascript" src="jquery-1.10.2.js"></script>
+  <script type="text/javascript" src="jquery-migrate-1.1.0.js"></script>
+
+  <!-- code mirror stuff -->
+  <link rel="stylesheet" href="lib/codemirror.css">
+  <link rel="stylesheet" href="theme/monokai.css">
+  <link rel="stylesheet" href="theme/ambiance.css">
+  <link rel="stylesheet" href="theme/solarized2.css">
+  <script type="text/javascript" src="lib/codemirror.js"></script>
+  <script type="text/javascript" src="mode/xml/xml.js"></script>
+  <script type="text/javascript" src="mode/css/css.js"></script>
+  <script type="text/javascript" src="mode/javascript/javascript.js"></script>
+  <script type="text/javascript" src="mode/htmlmixed/htmlmixed.js"></script>
+  <!-- codemirror stuff end -->
+
+  <!-- my scripts -->
+  <script type="text/javascript" src="testfiles/testreadfile.js"></script>
+  <script type="text/javascript" src="base.js"></script>
+
+  <!-- my stylesheets -->
+  <link rel="stylesheet" media="screen" type="text/css" href="base.css"/>
+
+<!--   <link rel="shortcut icon" href="images/favicon.ico" /> -->
+
+</head>
+<body id="main">
+  <div id="container">
+    <div class="editor">
+      <textarea id="htmlcode">
+      </textarea>
+    </div>
+    <div class="editor">
+      <textarea id="csscode">
+      </textarea>
+    </div>
+    <div class="editor"> 
+      <textarea id="jscode">
+      </textarea>
+    </div>
+    <button id="buttonGenerate" type="button">Generate Example</button>
+    <button id="generateCode" type="button">Kindly Code</button>
+  </div>
+  <div id="resultcontainer">
+    <iframe id="result">
+    </iframe>
+  </div>
+  <div style="clear:both"></div>
+</body>
+</html>
